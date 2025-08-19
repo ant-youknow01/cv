@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Energetic & Playful -->
-    <!-- Application Structure Plan: A top-down narrative flow telling a story. It starts with a strong headline, moves to a "big number" stat (3+ years experience), then visually breaks down skills into categories. The core is a chronological, visual timeline of career progression at YOUKNOW, followed by a grid of certifications. This linear, story-driven structure is chosen to guide the user through the career journey logically, making it easy to digest the transition from music to a successful tech career. -->
+    <!-- Application Structure Plan: A tabbed interface at the top allows users to click and instantly view a specific section. This structure consolidates the various content blocks (Summary, Skills, Experience, Certifications, Education) into a single viewport, eliminating the need for vertical scrolling to find information. This design is chosen to make the infographic feel more like a compact, interactive dashboard, directly addressing the user's request for consolidated information. -->
     <!-- Visualization & Content Choices: 
     - Key Stat: Report Info -> 3+ years experience -> Goal -> Inform -> Viz/Presentation -> Single Big Number -> Justification -> Immediately establishes credibility and experience level. Method: HTML/Tailwind.
     - Skills Breakdown: Report Info -> Skills list -> Goal -> Compare/Organize -> Viz/Presentation -> Donut Chart -> Justification -> Visually segments diverse skills into understandable categories (Technical, Core, Soft), showing a well-rounded profile. Library: Chart.js.
@@ -57,6 +57,13 @@
             background-color: #F43F5E; /* rose-500 */
             border: 4px solid #0F172A; /* slate-900 */
         }
+        .tab-button.active {
+            background-color: #F43F5E;
+            color: white;
+        }
+        .tab-button.active:hover {
+            background-color: #F43F5E;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -80,136 +87,232 @@
             </div>
         </section>
 
-        <section class="my-16 text-center">
-            <h2 class="text-4xl font-bold mb-4">A Blend of Expertise</h2>
-            <p class="max-w-3xl mx-auto mt-8 text-slate-300 text-2xl leading-relaxed">My skill set is a made up of a combination of deep technical knowledge, strategic consulting competencies, and essential soft skills for driving client success.</p>
-            <div class="chart-container">
-                <canvas id="skillsChart"></canvas>
-            </div>
-            <p class="max-w-3xl mx-auto mt-8 text-slate-300 text-2xl leading-relaxed">
-                My technical expertise spans a wide range of marketing technologies, including Braze, Domo, and Amplitude, supported by key certifications in each. My competencies in Agile Project Management and software consulting enable me to strategically guide projects from concept to completion. Finally, I have developed soft skills, such as problem-solving and communication, which are crucial for fostering strong client relationships and adapting to dynamic challenges within the industry.
-            </p>
-        </section>
+        <div class="bg-slate-800 p-4 rounded-xl shadow-lg">
+            <nav class="flex justify-center mb-6">
+                <button class="tab-button active flex-1 p-3 rounded-lg mr-2 text-white bg-rose-500 hover:bg-rose-600 transition" data-tab="summary">Summary</button>
+                <button class="tab-button flex-1 p-3 rounded-lg mr-2 text-white bg-slate-700 hover:bg-slate-600 transition" data-tab="skills">Skills</button>
+                <button class="tab-button flex-1 p-3 rounded-lg mr-2 text-white bg-slate-700 hover:bg-slate-600 transition" data-tab="experience">Experience</button>
+                <button class="tab-button flex-1 p-3 rounded-lg mr-2 text-white bg-slate-700 hover:bg-slate-600 transition" data-tab="certifications">Certifications</button>
+                <button class="tab-button flex-1 p-3 rounded-lg text-white bg-slate-700 hover:bg-slate-600 transition" data-tab="education">Education</button>
+            </nav>
 
-        <section class="my-16">
-            <h2 class="text-4xl font-bold text-center mb-12">Career Progression at YOUKNOW</h2>
-            <div class="relative timeline py-8">
-                
-                <div class="relative md:flex my-8">
-                    <div class="timeline-item-dot mt-1 hidden md:block"></div>
-                    <div class="md:w-1/2 md:pr-12"></div>
-                    <div class="md:w-1/2 md:pl-12">
-                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
-                            <p class="text-xl text-rose-400 font-bold">NOV 2024 - PRESENT</p>
-                            <h3 class="text-2xl font-bold text-white">Solutions Consultant</h3>
-                            <p class="mt-2 text-xl text-slate-300">Spearheading implementations, delivering bespoke solutions, and providing strategic guidance to empower clients.</p>
+            <div id="summary" class="tab-content">
+                <section class="text-center">
+                    <h2 class="text-4xl font-bold mb-4">A Blend of Expertise</h2>
+                    <p class="max-w-3xl mx-auto mt-8 text-slate-300 text-2xl leading-relaxed">My skill set is made up of a combination of deep technical knowledge, strategic consulting competencies, and essential soft skills for driving client success.</p>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                    <p class="max-w-3xl mx-auto mt-8 text-slate-300 text-2xl leading-relaxed">
+                        My technical expertise spans a wide range of marketing technologies, including Braze, Domo, and Amplitude, supported by key certifications in each. My competencies in Agile Project Management and software consulting enable me to strategically guide projects from concept to completion. Finally, I have developed soft skills, such as problem-solving and communication, which are crucial for fostering strong client relationships and adapting to dynamic challenges within the industry.
+                    </p>
+                </section>
+            </div>
+            
+            <div id="skills" class="tab-content hidden">
+                 <section class="text-center">
+                    <h2 class="text-4xl font-bold mb-12">Skills Breakdown</h2>
+                    <div class="grid md:grid-cols-3 gap-8 text-left">
+                        <div class="bg-slate-700 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-center text-rose-500">Technical Expertise</h3>
+                            <ul class="space-y-2 text-center text-slate-200">
+                                <li>Braze</li>
+                                <li>Domo</li>
+                                <li>Amplitude</li>
+                                <li>OneSignal</li>
+                                <li>Mixpanel</li>
+                                <li>mParticle</li>
+                                <li>Hootsuite</li>
+                                <li>Postman (API)</li>
+                                <li>Google Analytics</li>
+                                <li>Brandwatch</li>
+                                <li>HubSpot</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-700 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-center text-rose-500">Core Competencies</h3>
+                            <ul class="space-y-2 text-center text-slate-200">
+                                <li>Agile Project Management</li>
+                                <li>Software Consulting</li>
+                                <li>Data Analysis</li>
+                                <li>Client Relations</li>
+                                <li>Onboarding & Implementation</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-700 p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-bold mb-4 text-center text-rose-500">Soft Skills</h3>
+                            <ul class="space-y-2 text-center text-slate-200">
+                                <li>Problem Solving</li>
+                                <li>Creativity & Innovation</li>
+                                <li>Communication</li>
+                                <li>Presentation Skills</li>
+                                <li>Adaptability</li>
+                                <li>Training & Mentorship</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-
-                <div class="relative md:flex my-8">
-                    <div class="timeline-item-dot mt-1 hidden md:block"></div>
-                    <div class="md:w-1/2 md:pr-12">
-                         <div class="bg-slate-800 p-6 rounded-xl shadow-lg text-right md:text-left">
-                            <p class="text-xl text-rose-400 font-bold">MAR 2023 - NOV 2024</p>
-                            <h3 class="text-2xl font-bold text-white">Onboarding & Platform Specialist</h3>
-                            <p class="mt-2 text-xl text-slate-300">Managed end-to-end client onboarding and served as a key point of contact for technical inquiries.</p>
+                </section>
+            </div>
+            
+            <div id="experience" class="tab-content hidden">
+                <section>
+                    <h2 class="text-4xl font-bold text-center mb-12">Career Progression at YOUKNOW</h2>
+                    <div class="relative timeline py-8">
+                        <div class="relative md:flex my-8">
+                            <div class="timeline-item-dot mt-1 hidden md:block"></div>
+                            <div class="md:w-1/2 md:pr-12"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                                    <p class="text-xl text-rose-400 font-bold">NOV 2024 - PRESENT</p>
+                                    <h3 class="text-2xl font-bold text-white">Solutions Consultant</h3>
+                                    <p class="mt-2 text-xl text-slate-300">Spearheading implementations, delivering bespoke solutions, and providing strategic guidance to empower clients.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative md:flex my-8">
+                            <div class="timeline-item-dot mt-1 hidden md:block"></div>
+                            <div class="md:w-1/2 md:pr-12">
+                                <div class="bg-slate-800 p-6 rounded-xl shadow-lg text-right md:text-left">
+                                    <p class="text-xl text-rose-400 font-bold">MAR 2023 - NOV 2024</p>
+                                    <h3 class="text-2xl font-bold text-white">Onboarding & Platform Specialist</h3>
+                                    <p class="mt-2 text-xl text-slate-300">Managed end-to-end client onboarding and served as a key point of contact for technical inquiries.</p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                        <div class="relative md:flex my-8">
+                            <div class="timeline-item-dot mt-1 hidden md:block"></div>
+                            <div class="md:w-1/2 md:pr-12"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                                    <p class="text-xl text-rose-400 font-bold">APR 2022 - MAR 2023</p>
+                                    <h3 class="text-2xl font-bold text-white">Technical Support Specialist</h3>
+                                    <p class="mt-2 text-xl text-slate-300">Provided expert technical support, diagnosing and resolving a wide range of customer issues efficiently.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="md:w-1/2 md:pl-12"></div>
-                </div>
-
-                <div class="relative md:flex my-8">
-                    <div class="timeline-item-dot mt-1 hidden md:block"></div>
-                    <div class="md:w-1/2 md:pr-12"></div>
-                    <div class="md:w-1/2 md:pl-12">
-                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
-                            <p class="text-xl text-rose-400 font-bold">APR 2022 - MAR 2023</p>
-                            <h3 class="text-2xl font-bold text-white">Technical Support Specialist</h3>
-                            <p class="mt-2 text-xl text-slate-300">Provided expert technical support, diagnosing and resolving a wide range of customer issues efficiently.</p>
-                        </div>
+                </section>
+            </div>
+            
+            <div id="certifications" class="tab-content hidden">
+                <section>
+                    <h2 class="text-4xl font-bold text-center mb-4">Certified & Proficient</h2>
+                    <p class="max-w-2xl mx-auto text-center text-2xl text-slate-300 mb-12">Committed to continuous learning, holding numerous certifications across the MarTech ecosystem.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔧</span> Braze</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">📊</span> Domo</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">📈</span> Amplitude</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔔</span> Mixpanel</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔗</span> mParticle</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🦉</span> Hootsuite</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🛰️</span> Postman API</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🌐</span> Google Analytics</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔍</span> Brandwatch</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">⚙️</span> HubSpot</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🏃</span> Agile PM</div>
+                        <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">💡</span> Digital Strategist</div>
                     </div>
-                </div>
-
+                </section>
             </div>
-        </section>
-
-        <section class="my-16">
-            <h2 class="text-4xl font-bold text-center mb-4">Certified & Proficient</h2>
-            <p class="max-w-2xl mx-auto text-center text-2xl text-slate-300 mb-12">Committed to continuous learning, holding numerous certifications across the MarTech ecosystem.</p>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔧</span> Braze</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">📊</span> Domo</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">📈</span> Amplitude</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔔</span> Mixpanel</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔗</span> mParticle</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🦉</span> Hootsuite</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🛰️</span> Postman API</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🌐</span> Google Analytics</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🔍</span> Brandwatch</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">⚙️</span> HubSpot</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">🏃</span> Agile PM</div>
-                <div class="bg-slate-800 p-4 rounded-lg"><span class="text-3xl mr-2">💡</span> Digital Strategist</div>
+            
+            <div id="education" class="tab-content hidden">
+                <section class="text-center">
+                    <h2 class="text-4xl font-bold mb-12">Education</h2>
+                    <div class="bg-slate-700 p-8 rounded-lg shadow-md text-center">
+                        <p class="text-2xl font-bold text-white">University of the Witwatersrand</p>
+                        <p class="text-xl text-slate-300 mt-2">Johannesburg, Gauteng, South Africa</p>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
 
         <footer class="text-center mt-16 py-8 border-t border-slate-700">
             <p class="text-slate-400">Infographic CV for Antonio Buys | Data-driven, client-focused, and ready to innovate.</p>
         </footer>
-
     </div>
 
     <script>
-        const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
-        const skillsChart = new Chart(skillsChartCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Technical Expertise', 'Soft Skills', 'Core Competencies'],
-                datasets: [{
-                    label: 'Skills Breakdown',
-                    data: [11, 6, 5],
-                    backgroundColor: [
-                        '#F43F5E', // rose-500
-                        '#FBBF24', // amber-400
-                        '#38BDF8'  // sky-400
-                    ],
-                    borderColor: '#0F172A',
-                    borderWidth: 4,
-                    hoverOffset: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '60%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: '#CBD5E1', // slate-300
-                            font: {
-                                size: 14,
-                                family: 'Inter'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(tooltipItems) {
-                                const item = tooltipItems[0];
-                                let label = item.chart.data.labels[item.dataIndex];
-                                if (Array.isArray(label)) {
-                                  return label.join(' ');
-                                } else {
-                                  return label;
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active', 'bg-rose-500', 'hover:bg-rose-600'));
+                tabButtons.forEach(btn => btn.classList.add('bg-slate-700', 'hover:bg-slate-600'));
+                
+                button.classList.add('active', 'bg-rose-500', 'hover:bg-rose-600');
+                button.classList.remove('bg-slate-700', 'hover:bg-slate-600');
+
+                const targetTab = button.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    if (content.id === targetTab) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+
+                if (targetTab === 'summary') {
+                     const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+                     if (Chart.getChart("skillsChart")) {
+                        Chart.getChart("skillsChart").destroy();
+                     }
+                     new Chart(skillsChartCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Technical Expertise', 'Soft Skills', 'Core Competencies'],
+                            datasets: [{
+                                label: 'Skills Breakdown',
+                                data: [11, 6, 5],
+                                backgroundColor: [
+                                    '#F43F5E',
+                                    '#FBBF24',
+                                    '#38BDF8'
+                                ],
+                                borderColor: '#0F172A',
+                                borderWidth: 4,
+                                hoverOffset: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutout: '60%',
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#CBD5E1',
+                                        font: {
+                                            size: 14,
+                                            family: 'Inter'
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        title: function(tooltipItems) {
+                                            const item = tooltipItems[0];
+                                            let label = item.chart.data.labels[item.dataIndex];
+                                            if (Array.isArray(label)) {
+                                              return label.join(' ');
+                                            } else {
+                                              return label;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
+                    });
                 }
-            }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('[data-tab="summary"]').click();
         });
     </script>
-
 </body>
 </html>
